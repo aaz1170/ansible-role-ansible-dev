@@ -13,3 +13,8 @@ def test_hosts_file(host):
     assert f.exists
     assert f.user == 'root'
     assert f.group == 'root'
+
+def test_dependency_docker_is_appliyed(host):
+    assert host.package("docker-ce").is_installed
+    assert host.service("docker").is_running
+
