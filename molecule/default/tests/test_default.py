@@ -18,3 +18,12 @@ def test_dependency_docker_is_appliyed(host):
     assert host.package("docker-ce").is_installed
     assert host.service("docker").is_running
 
+def test_packages_are_installed(host):
+    packageList = [
+        "python3-pip",
+        "python3-venv",
+        "libssl-dev",
+        "python3-docker"
+    ]
+    for item in packageList:
+        assert host.package(item).is_installed

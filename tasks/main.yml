@@ -1,2 +1,13 @@
 ---
 # tasks file for ansible-role-ansible-dev
+
+- name: install packages
+  apt:
+    update-cache: yes
+    force_apt_get: yes
+    name:
+      - python3-pip
+      - python3-venv
+      - libssl-dev
+      - python3-docker
+  become: true
