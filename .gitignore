@@ -1,0 +1,3 @@
+molecule/default/pytestdebug.log
+molecule/default/tests/.test_default.py.swp
+molecule/default/tests/__pycache__/
