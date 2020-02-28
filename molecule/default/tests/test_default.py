@@ -27,3 +27,8 @@ def test_packages_are_installed(host):
     ]
     for item in packageList:
         assert host.package(item).is_installed
+
+def test_ansible_is_pinned_for_apt(host):
+    cmd = host.run('sudo apt install ansible')
+    assert "E: Package 'ansible' has no installation candidate" in cmd.stderr
+    assert cmd.rc == 100

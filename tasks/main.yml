@@ -11,3 +11,12 @@
       - libssl-dev
       - python3-docker
   become: true
+
+- name: block ansible packages in apt
+  copy:
+    src: ansible_apt-preferences
+    dest: /etc/apt/preferences.d/
+    owner: root
+    group: root
+    mode: 0644
+  become: true
