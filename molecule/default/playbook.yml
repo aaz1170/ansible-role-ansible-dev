@@ -1,5 +1,11 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    users:
+      - vagrant
+    pip_version:
+      ansible: "2.8.0"
+      molecule: "2.20"
   roles:
     - role: ansible-role-ansible-dev

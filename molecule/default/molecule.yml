@@ -25,3 +25,4 @@ verifier:
     enabled: false
   options:
     v: 1
+    s: true

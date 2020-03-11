@@ -20,3 +20,23 @@
     group: root
     mode: 0644
   become: true
+
+- name: setup virtual environments
+  pip:
+    name: 
+      - setuptools
+      - ansible=={{ pip_version["ansible"] }}
+      - molecule=={{ pip_version["molecule"] }}
+    virtualenv: "/home//{{ item }}/.venv-ansible"
+    virtualenv_command: "/usr/bin/python3 -m venv"
+  loop: "{{ users }}"
+  become: true
+
+- name: set ownership of virtual environments
+  file:
+    path: "/home/{{ item}}/.venv-ansible"
+    recurse: yes
+    owner: "{{ item }}"
+    group: "{{ item }}"
+  loop: "{{ users }}"
+  become: true
