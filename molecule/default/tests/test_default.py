@@ -15,11 +15,6 @@ def test_hosts_file(host):
     assert f.group == 'root'
 
 
-def test_dependency_docker_is_appliyed(host):
-    assert host.package("docker-ce").is_installed
-    assert host.service("docker").is_running
-
-
 def test_packages_are_installed(host):
     packageList = [
         "python3-pip",
