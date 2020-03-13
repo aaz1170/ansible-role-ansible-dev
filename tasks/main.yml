@@ -27,8 +27,8 @@
     virtualenv_command: "/usr/bin/python3 -m venv"
     name: 
       - setuptools
-      - ansible=={{ pip_version["ansible"] }}
-      - molecule=={{ pip_version["molecule"] }}
+      - ansible=={{ pip_versions["ansible"] }}
+      - molecule=={{ pip_versions["molecule"] }}
   loop: "{{ users }}"
   notify: "set ownership of virtual environments"
   become: true

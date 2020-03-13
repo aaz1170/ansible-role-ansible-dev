@@ -6,7 +6,7 @@
       - vagrant
       - johndoe
       - janedoe
-    pip_version:
+    pip_versions:
       ansible: "2.8.0"
       molecule: "2.20"
   roles:
