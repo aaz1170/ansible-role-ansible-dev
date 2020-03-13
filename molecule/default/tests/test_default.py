@@ -33,10 +33,12 @@ def test_ansible_is_pinned_for_apt(host):
 
 
 def test_venv_is_created(host):
-    venv = host.file('/home/vagrant/.venv-ansible/bin/activate')
-    assert venv.exists
-    assert venv.user == 'vagrant'
-    assert venv.group == 'vagrant'
+    users = [ "vagrant", "johndoe", "janedoe" ]
+    for user in users:
+        venv = host.file('/home/%s/.venv-ansible/bin/activate' % user)
+        assert venv.exists
+        assert venv.user == user
+        assert venv.group == user
 
 
 def test_ansible_is_installed_in_venv(host):

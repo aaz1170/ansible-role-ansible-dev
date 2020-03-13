@@ -4,6 +4,8 @@
   vars:
     users:
       - vagrant
+      - johndoe
+      - janedoe
     pip_version:
       ansible: "2.8.0"
       molecule: "2.20"

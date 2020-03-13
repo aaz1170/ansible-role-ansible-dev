@@ -1,0 +1,14 @@
+---
+- name: Prepare
+
+  hosts: all
+
+  tasks:
+  - name: add test users
+    user:
+      name: "{{ item }}"
+    loop:
+      - johndoe
+      - janedoe
+    become: true
+

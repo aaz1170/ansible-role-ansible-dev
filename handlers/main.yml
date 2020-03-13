@@ -1,2 +1,13 @@
 ---
 # handlers file for ansible-role-ansible-dev
+
+- name: set ownership of virtual environments
+  file:
+    path: "/home/{{ item}}/.venv-ansible"
+    state: directory
+    recurse: yes
+    owner: "{{ item }}"
+    group: "{{ item }}"
+  loop: "{{ users }}"
+  become: true
+
