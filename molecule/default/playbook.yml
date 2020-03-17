@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   vars:
-    users:
+    developers:
       - vagrant
       - johndoe
       - janedoe

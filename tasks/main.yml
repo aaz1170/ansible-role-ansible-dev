@@ -29,7 +29,7 @@
       - setuptools
       - ansible=={{ pip_versions["ansible"] }}
       - molecule=={{ pip_versions["molecule"] }}
-  loop: "{{ users }}"
+  loop: "{{ developers }}"
   notify: "set ownership of virtual environments"
   become: true
 

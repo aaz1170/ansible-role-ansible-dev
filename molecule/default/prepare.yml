@@ -4,7 +4,7 @@
   hosts: all
 
   tasks:
-  - name: add test users
+  - name: add test developers
     user:
       name: "{{ item }}"
     loop:

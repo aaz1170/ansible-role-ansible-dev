@@ -8,6 +8,6 @@
     recurse: yes
     owner: "{{ item }}"
     group: "{{ item }}"
-  loop: "{{ users }}"
+  loop: "{{ developers }}"
   become: true
 
