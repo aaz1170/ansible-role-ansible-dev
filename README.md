@@ -1,40 +1,49 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+This role prepares a host to develop Ansible roles with molecule.
+
+It installes the required Debian Packages, but not Ansible. The
+ansible Package is instead blocked for apt. The role creates virtual
+Python environments for each listed developer. Inside these virtual
+environments, ansible and molecule are installed as pip packages.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should
-be mentioned here. For instance, if the role uses the EC2 module, it may be a
-good idea to mention in this section that the boto package is required.
+In order to provision test instances with molecule, you need one of the
+supported drivers (see
+https://molecule.readthedocs.io/en/latest/configuration.html#driver).
+You may need to install Docker, Vagrant, Virtualbox or something alike.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+This role requires two variables to be defined:
+- a list of developers (i.e. _usernames_). These have to exist on the target host,
+- a dictionary with the ansible and molecule pip version.
+
+<p></p>
+
+    developers:
+      - janedoe
+    pip_versions:
+      ansible: "2.8.0"
+      molecule: "2.20"
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in
-regards to parameters that may need to be set for other roles, or variables that
-are used from other roles.
+This role has no dependecies. But using other roles (like _docker_) may be
+useful.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables
-passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: ansible-role-ansible-dev, x: 42 }
+    - hosts: ansible-dev-hosts
+      tasks:
+        - include_role: 
+            name: aaz1170.ansible-dev
 
 License
 -------
@@ -44,5 +53,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a
-website (HTML is not allowed).
+This role was created in 2020 by aaz1170
