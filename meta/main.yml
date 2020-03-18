@@ -10,6 +10,11 @@ galaxy_info:
   - name: Debian
     versions:
       - stretch
+      - buster
+  - name: Ubuntu
+    versions:
+      - 18.04
+
   galaxy_tags:
     - ansible
     - molecule
