@@ -32,4 +32,3 @@
   loop: "{{ developers }}"
   notify: "set ownership of virtual environments"
   become: true
-

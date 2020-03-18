@@ -7,7 +7,7 @@ driver:
     name: virtualbox
 lint:
   name: yamllint
-  enabled: false
+  enabled: true
 platforms:
   - name: ansible-dev-${MOLECULE_DISTRO:-debian9}
     box: geerlingguy/${MOLECULE_DISTRO:-debian9}

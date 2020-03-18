@@ -11,4 +11,3 @@
       - johndoe
       - janedoe
     become: true
-
