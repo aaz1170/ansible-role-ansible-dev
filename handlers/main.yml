@@ -3,7 +3,7 @@
 
 - name: set ownership of virtual environments
   file:
-    path: "/home/{{ item}}/.venv-ansible"
+    path: "/home/{{ item }}/.venv-ansible"
     state: directory
     recurse: yes
     owner: "{{ item }}"

@@ -13,7 +13,7 @@ galaxy_info:
       - buster
   - name: Ubuntu
     versions:
-      - 18.04
+      - bionic
 
   galaxy_tags:
     - ansible
