@@ -1,7 +1,7 @@
 Role Name
 =========
 
-This role prepares a host to develop Ansible roles with molecule.
+This role prepares a Debian host to develop Ansible roles with molecule.
 
 It installes the required Debian Packages, but not Ansible. The
 ansible Package is instead blocked for apt. The role creates virtual
