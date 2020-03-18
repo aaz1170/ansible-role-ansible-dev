@@ -9,8 +9,8 @@ lint:
   name: yamllint
   enabled: false
 platforms:
-  - name: ansible-role-ansible-dev
-    box: geerlingguy/debian9
+  - name: ansible-dev-${MOLECULE_DISTRO:-debian9}
+    box: geerlingguy/${MOLECULE_DISTRO:-debian9}
     memory: 512
     cpus: 1
 provisioner:
