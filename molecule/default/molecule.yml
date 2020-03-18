@@ -22,7 +22,7 @@ verifier:
   name: testinfra
   lint:
     name: flake8
-    enabled: false
+    enabled: true
   options:
     v: 1
     s: true

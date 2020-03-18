@@ -33,7 +33,7 @@ def test_ansible_is_pinned_for_apt(host):
 
 
 def test_venv_is_created(host):
-    developers = [ "vagrant", "johndoe", "janedoe" ]
+    developers = ["vagrant", "johndoe", "janedoe"]
     for developer in developers:
         venv = host.file('/home/%s/.venv-ansible/bin/activate' % developer)
         assert venv.exists
@@ -42,7 +42,9 @@ def test_venv_is_created(host):
 
 
 def test_ansible_is_installed_in_venv(host):
-    packages = host.pip_package.get_packages(pip_path='/home/vagrant/.venv-ansible/bin/pip')
-    assert packages["ansible"]
-    assert packages["molecule"]
-    
+    developers = ["vagrant", "johndoe", "janedoe"]
+    for developer in developers:
+        venv_pip = ('/home/%s/.venv-ansible/bin/pip' % developer)
+        packages = host.pip_package.get_packages(pip_path=venv_pip)
+        assert packages["ansible"]
+        assert packages["molecule"]
