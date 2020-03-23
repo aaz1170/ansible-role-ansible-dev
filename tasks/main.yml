@@ -23,7 +23,7 @@
 
 - name: setup virtual environments
   pip:
-    virtualenv: "/home//{{ item }}/.venv-ansible"
+    virtualenv: "/home/{{ item }}/.venv-ansible"
     virtualenv_command: "/usr/bin/python3 -m venv"
     name:
       - setuptools
