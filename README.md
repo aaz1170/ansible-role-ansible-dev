@@ -31,6 +31,18 @@ This role requires two variables to be defined:
       ansible: "2.8.0"
       molecule: "2.20"
 
+If the development host needs to use a proxy, you can optionally configure it for pip:
+
+<p></p>
+
+    proxy_env:
+      HTTP_PROXY: "http://<HostnameOrIp>:<PortIfNeeded>/"
+      HTTPS_PROXY: "https://<HostnameOrIp>:<PortIfNeeded>/"
+
+Setting this variable also causes the role to copy a _pip.config_ file into
+the venv. It configures pip to ignore TLS cert errors when accessing the pip
+repositories (see _files/pip.config_)
+
 Dependencies
 ------------
 
