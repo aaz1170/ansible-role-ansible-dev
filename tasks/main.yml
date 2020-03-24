@@ -38,7 +38,6 @@
       - setuptools
       - ansible=={{ pip_versions["ansible"] }}
       - molecule=={{ pip_versions["molecule"] }}
-    extra_args: "--trusted-host pypi.org --trusted-host files.pythonhosted.org"
   loop: "{{ developers }}"
   environment: "{{ proxy_env | default({}) }}"
   notify: "set ownership of virtual environments"
