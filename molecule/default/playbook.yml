@@ -6,8 +6,10 @@
       - vagrant
       - johndoe
       - janedoe
-    pip_versions:
-      ansible: "2.8.0"
-      molecule: "2.20"
+    pip_packages:
+      - setuptools
+      - ansible[azure]==2.8.0
+      - molecule==2.20
+      - pywinrm>=0.3.0
   roles:
     - role: ansible-role-ansible-dev

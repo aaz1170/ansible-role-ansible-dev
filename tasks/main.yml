@@ -34,10 +34,7 @@
   pip:
     virtualenv: "/home/{{ item }}/.venv-ansible"
     virtualenv_command: "/usr/bin/python3 -m venv"
-    name:
-      - setuptools
-      - ansible=={{ pip_versions["ansible"] }}
-      - molecule=={{ pip_versions["molecule"] }}
+    name: "{{ pip_packages }}"
   loop: "{{ developers }}"
   environment: "{{ proxy_env | default({}) }}"
   notify: "set ownership of virtual environments"

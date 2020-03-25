@@ -21,15 +21,16 @@ Role Variables
 
 This role requires two variables to be defined:
 - a list of developers (i.e. _usernames_). These have to exist on the target host,
-- a dictionary with the ansible and molecule pip version.
+- a dictionary with the pip packages to be installed in the venv.
 
 <p></p>
 
     developers:
       - janedoe
-    pip_versions:
-      ansible: "2.8.0"
-      molecule: "2.20"
+    pip_packages:
+      - setuptools
+      - ansible==2.8.0
+      - molecule==2.20
 
 If the development host needs to use a proxy, you can optionally configure it for pip:
 
