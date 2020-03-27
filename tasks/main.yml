@@ -32,12 +32,20 @@
   become: true
   when: proxy_env is defined
 
+- name: get list of developers
+  find:
+    paths: /home
+    file_type: directory
+  register: home_dirs
+
 - name: setup virtual environments
   pip:
-    virtualenv: "/home/{{ item }}/.venv-ansible"
+    virtualenv: "{{ item.path }}/.venv-ansible"
     virtualenv_command: "/usr/bin/python3 -m venv"
     name: "{{ pip_packages }}"
-  loop: "{{ developers }}"
+  loop: "{{ home_dirs.files }}"
+  loop_control:
+    label: "{{ item.path }}/.venv-ansible"
   environment: "{{ proxy_env | default({}) }}"
   notify: "set ownership of virtual environments"
   become: true
