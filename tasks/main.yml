@@ -24,9 +24,11 @@
 
 - name: configure pip behind a proxy if needed
   copy:
-    src: pip.config
-    dest: "/home//{{ item }}/.venv-ansible/pip.config"
-  loop: "{{ developers }}"
+    src: pip.conf
+    dest: "/etc/pip.conf"
+    owner: root
+    group: root
+    mode: 0644
   become: true
   when: proxy_env is defined
 
