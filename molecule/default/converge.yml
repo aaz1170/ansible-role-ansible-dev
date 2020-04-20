@@ -2,10 +2,7 @@
 - name: Converge
   hosts: all
   vars:
-    developers:
-      - vagrant
-      - johndoe
-      - janedoe
+    ansible_python_interpreter: auto_silent
     pip_packages:
       - setuptools
       - ansible[azure]==2.8.0

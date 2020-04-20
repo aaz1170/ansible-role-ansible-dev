@@ -3,10 +3,12 @@
 
 - name: set ownership of virtual environments
   file:
-    path: "/home/{{ item }}/.venv-ansible"
+    path: "{{ item.path }}/.venv-ansible"
     state: directory
     recurse: yes
-    owner: "{{ item }}"
-    group: "{{ item }}"
-  loop: "{{ developers }}"
+    owner: "{{ item.pw_name }}"
+    group: "{{ item.gr_name }}"
   become: true
+  loop: "{{ home_dirs.files }}"
+  loop_control:
+    label: "{{ item.path }}/.venv-ansible"

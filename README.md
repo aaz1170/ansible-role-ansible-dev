@@ -19,14 +19,11 @@ You may need to install Docker, Vagrant, Virtualbox or something alike.
 Role Variables
 --------------
 
-This role requires two variables to be defined:
-- a list of developers (i.e. _usernames_). These have to exist on the target host,
+This role requires one variable to be defined:
 - a dictionary with the pip packages to be installed in the venv.
 
 <p></p>
 
-    developers:
-      - janedoe
     pip_packages:
       - setuptools
       - ansible==2.8.0
@@ -36,13 +33,11 @@ If the development host needs to use a proxy, you can optionally configure it fo
 
 <p></p>
 
-    proxy_env:
-      HTTP_PROXY: "http://<HostnameOrIp>:<PortIfNeeded>/"
-      HTTPS_PROXY: "https://<HostnameOrIp>:<PortIfNeeded>/"
+    pip_proxy: "https://<HostnameOrIp>:<PortIfNeeded>/"
 
 Setting this variable also causes the role to copy a _pip.config_ file into
 the venv. It configures pip to ignore TLS cert errors when accessing the pip
-repositories (see _files/pip.config_)
+repositories (see _templates/pip.conf.j2_)
 
 Dependencies
 ------------
@@ -54,6 +49,12 @@ Example Playbook
 ----------------
 
     - hosts: ansible-dev-hosts
+      vars:
+        pip_packages:
+        - setuptools
+        - ansible==2.8.0
+        - molecule==2.20
+        pip_proxy: "https://192.168.0.1:8080/"
       tasks:
         - include_role: 
             name: aaz1170.ansible-dev

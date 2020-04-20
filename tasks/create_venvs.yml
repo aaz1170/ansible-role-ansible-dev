@@ -1,0 +1,21 @@
+---
+- name: "create Python venv {{ item.path }}/.venv-ansible"
+  command:
+    cmd: "/usr/bin/python3 -m venv {{ item.path }}/.venv-ansible"
+    creates: "{{ item.path }}/.venv-ansible"
+  become: true
+
+- name: "configure proxy for pip in {{ item.path }}/.venv-ansible"
+  template:
+    dest: "{{ item.path }}/.venv-ansible/pip.conf"
+    src: pip.conf.j2
+  become: true
+  notify: "set ownership of virtual environments"
+  when: pip_proxy is defined
+
+- name: "install pip packages in venv {{ item.path }}/.venv-ansible"
+  pip:
+    virtualenv: "{{ item.path }}/.venv-ansible"
+    name: "{{ pip_packages }}"
+  become: true
+  notify: "set ownership of virtual environments"

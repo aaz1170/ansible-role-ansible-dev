@@ -6,7 +6,6 @@
     update-cache: yes
     force_apt_get: yes
     name:
-      - python-setuptools
       - python3-pip
       - python3-venv
       - libssl-dev
@@ -22,30 +21,11 @@
     mode: 0644
   become: true
 
-- name: configure pip behind a proxy if needed
-  copy:
-    src: pip.conf
-    dest: "/etc/pip.conf"
-    owner: root
-    group: root
-    mode: 0644
-  become: true
-  when: proxy_env is defined
-
 - name: get list of developers
   find:
     paths: /home
     file_type: directory
   register: home_dirs
 
-- name: setup virtual environments
-  pip:
-    virtualenv: "{{ item.path }}/.venv-ansible"
-    virtualenv_command: "/usr/bin/python3 -m venv"
-    name: "{{ pip_packages }}"
+- include_tasks: create_venvs.yml
   loop: "{{ home_dirs.files }}"
-  loop_control:
-    label: "{{ item.path }}/.venv-ansible"
-  environment: "{{ proxy_env | default({}) }}"
-  notify: "set ownership of virtual environments"
-  become: true
