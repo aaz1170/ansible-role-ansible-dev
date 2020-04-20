@@ -5,9 +5,11 @@ driver:
   name: vagrant
   provider:
     name: virtualbox
-lint:
-  name: yamllint
-  enabled: true
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8
 platforms:
   - name: ansible-dev-${MOLECULE_DISTRO:-debian9}
     box: geerlingguy/${MOLECULE_DISTRO:-debian9}
@@ -15,14 +17,8 @@ platforms:
     cpus: 1
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
-    enabled: true
 verifier:
   name: testinfra
-  lint:
-    name: flake8
-    enabled: true
   options:
     v: 1
     s: true
